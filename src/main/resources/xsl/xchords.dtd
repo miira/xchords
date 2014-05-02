@@ -1,0 +1,65 @@
+<!--
+Description:    This is the DTD for XChords.
+                DTD conforms with XML 1.0
+Version:        0.2.1
+Status:         draft
+Author:         Miroslav Mocek
+License:        LGPL (Lesser General Public License)
+
+Revisions:
+    Date:	September 2006
+    What:	added 'open' state of string
+
+    Date:	March 2005
+    What:	xml:id attribute, name attribute from chord turned into child element,
+                xml:lang attribute for name element
+
+    Date:       11th July 2003
+    What:       initial
+
+
+TODO:
+    chord library info
+    chord classification (harmonic, music theory)
+    string tuning
+-->
+
+<!-- String names, which can be only used -->
+<!ENTITY % stringnames "(e6|a|d|g|b|e1)">
+<!ENTITY % test "ahoj">
+
+<!ELEMENT chordlibrary (desc?,chord+)>
+
+<!ELEMENT desc (%test;)>
+
+<!ELEMENT chord (name+,position+)>
+<!ATTLIST chord 
+    xml:id  ID              #IMPLIED
+>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+    xml:lang NMTOKEN 'en'
+>
+
+<!ELEMENT position (barre*,string*)>
+<!ATTLIST position
+    base    NMTOKEN         #REQUIRED
+    name    CDATA           #IMPLIED
+>
+
+<!ELEMENT barre EMPTY>
+<!ATTLIST barre
+    low     %stringnames;   #REQUIRED
+    high    %stringnames;   #REQUIRED
+    fret    NMTOKEN         #REQUIRED
+    finger  NMTOKEN         #REQUIRED
+>
+
+<!ELEMENT string EMPTY>
+<!ATTLIST string
+    name    %stringnames;   #REQUIRED
+    fret    NMTOKEN         #IMPLIED
+    finger  NMTOKEN         #IMPLIED
+    state   (ok|no|opt|open)     "ok"
+>

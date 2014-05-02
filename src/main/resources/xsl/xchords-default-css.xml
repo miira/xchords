@@ -1,0 +1,47 @@
+<elems>
+<elem id="label">
+	fill:black; 
+	stroke: black; 
+	font-size:50px; 
+	text-anchor: middle;  
+</elem>
+<elem id="neck">
+fill:none; stroke:black; stroke-width:2px;
+</elem>
+<elem id="endneck">
+fill:none; stroke:black; stroke-width:14px;
+</elem>
+<elem id="frets">
+fill:black; stroke: black; stroke-width: 1px;
+</elem>
+<elem id="strings">
+stroke: gray;
+</elem>
+<elem id="dot">
+fill:black; stroke: black;
+</elem>
+<elem id="emptydot">
+fill:white; stroke: black;
+</elem>
+<elem id="disableddot">
+stroke: black; stroke-width: 2px;
+</elem>
+<elem id="spacer">
+fill:white; stroke:white; stroke-width:1px
+</elem>
+<elem id="spacerline">
+fill:none; stroke:black;
+</elem>
+<elem id="finger">
+stroke:white; fill:white; font-size:23px;
+</elem>
+<elem id="barrenum">
+stroke:black; fill:white; font-size:35px; text-anchor:end;
+</elem>
+<elem id="note">
+stroke: gray; fill:gray; font-size:20px;
+</elem>
+<elem id="barre">
+stroke:black; stroke-width: 6px;
+</elem>
+</elems>

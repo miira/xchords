@@ -60,12 +60,16 @@ public class XMLChordSaver extends XMLSaver {
 			// filtering? maybe no, because it's only temporary, it will be different in future...
 			// ok, save whole chord library
 			Element chordElement = buildChord(doc, chord, where);
-			buildTextNode(doc, "name", chord.getName(), chordElement);
-			Element positionElement = buildPosition(doc, chord, chordElement);
-			for (StringInfo si : chord.getStrings()) {
-				if (si != null) {
-					Element stringElement = buildString(doc, si, positionElement);
-				}
+			processChord(doc, chord, chordElement);
+		}
+	}
+	
+	public void processChord(Document doc, Chord chord, Element chordElement) {
+		buildTextNode(doc, "name", chord.getName(), chordElement);
+		Element positionElement = buildPosition(doc, chord, chordElement);
+		for (StringInfo si : chord.getStrings()) {
+			if (si != null) {
+				buildString(doc, si, positionElement);
 			}
 		}
 	}
