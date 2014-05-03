@@ -114,4 +114,28 @@ public class Chord {
 		return Chord.getLibraryName(id);
 	}
 
+	// currently only for debugging, if JSON will be supported in future
+	// the representation will be changed!
+	public String toJson() {
+		StringBuilder sb = new StringBuilder(50);
+		sb.append("{");
+		sb.append("\"id\":\"");
+		sb.append(id);
+		sb.append("\", ");
+		sb.append("\"strings\":[");
+		for (int i = 0; i < 6; i++) {
+			if (strings[i] != null) {
+				sb.append("\"");
+				sb.append(strings[i].getName());
+				sb.append("\" : {\"fret\":\"");
+				sb.append(strings[i].getFret());
+				sb.append("\", \"state\":\"");
+				sb.append(strings[i].getState());
+				sb.append("\"}, ");
+			}
+		}
+		sb.append("]");
+		sb.append("}");
+		return sb.toString();
+	}
 }

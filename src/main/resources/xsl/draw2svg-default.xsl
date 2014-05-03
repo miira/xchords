@@ -25,6 +25,9 @@
 <xsl:param name="vy" select="0"/>
 <xsl:param name="vmaxy" select="410"/>
 
+<!-- load styles for elements -->
+<xsl:variable name="cssxmldoc" select="$cssfile"/>
+
 <xsl:include href="draw2svg.xsl"/>
 
 </xsl:stylesheet>

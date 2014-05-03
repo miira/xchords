@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chordlibrary xmlns="http://xchords.barad.cz/2003/XChords" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xchords.barad.cz/2003/XChords file:/D:/projects/xchords/src/xsd/xchords-library.xsd">
+<desc>Basic example set of chords</desc>
+<chord id="xchords-C">
+<name>C</name>
+<position base="1">
+<string name="a" fret="3" finger="3"/>
+<string name="d" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Cmi">
+<name>Cmi</name>
+<position base="3">
+<barre low="e6" high="e1" fret="3" finger="1"/>
+<string name="d" fret="5" finger="3"/>
+<string name="g" fret="5" finger="4"/>
+<string name="b" fret="4" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-C7">
+<name>C7</name>
+<position base="1">
+<string name="a" fret="3" finger="3"/>
+<string name="d" fret="2" finger="2"/>
+<string name="g" fret="3" finger="4"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-C6">
+<name>C6</name>
+<position base="1">
+<string name="a" fret="3" finger="4"/>
+<string name="d" fret="2" finger="2"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Cmaj7">
+<name>Cmaj7</name>
+<position base="1">
+<string name="a" fret="3" finger="3"/>
+<string name="d" fret="2" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-C_B">
+<name>C/B</name>
+<name xml:lang="cs">C/H</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="2" finger="3"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-C_G">
+<name>C/G</name>
+<position base="1">
+<string name="e6" fret="3" finger="3"/>
+<string name="a" fret="3" finger="4"/>
+<string name="d" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Cs">
+<name>C#</name>
+<position base="4">
+<barre low="e6" high="e1" fret="4" finger="1"/>
+<string name="d" fret="6" finger="2"/>
+<string name="g" fret="6" finger="3"/>
+<string name="b" fret="6" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Csmi">
+<name>C#mi</name>
+<position base="4">
+<barre low="e6" high="e1" fret="4" finger="1"/>
+<string name="d" fret="6" finger="3"/>
+<string name="g" fret="6" finger="4"/>
+<string name="b" fret="5" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Csdim">
+<name>C#dim</name>
+<position base="1">
+<string name="d" fret="2" finger="1"/>
+<string name="g" fret="3" finger="3"/>
+<string name="b" fret="2" finger="2"/>
+<string name="e1" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-D">
+<name>D</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="g" fret="2" finger="1"/>
+<string name="b" fret="3" finger="2"/>
+<string name="e1" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-Dmi">
+<name>Dmi</name>
+<position base="1">
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="3" finger="3"/>
+<string name="e1" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-D7">
+<name>D7</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+<string name="e1" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-D7maj">
+<name>D7maj</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="g" fret="2" finger="1"/>
+<string name="b" fret="2" finger="2"/>
+<string name="e1" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-Ddim">
+<name>Ddim</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="a" state="no"/>
+<string name="g" fret="1" finger="1"/>
+<string name="e1" fret="1" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Dmi7">
+<name>Dmi7</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="1"/>
+<string name="e1" fret="1" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-D7e">
+<name>D7+</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="g" fret="3" finger="4"/>
+<string name="b" fret="1" finger="1"/>
+<string name="e1" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-D7_Fs">
+<name>D7/F#</name>
+<position base="1">
+<string name="e6" fret="2" finger="T"/>
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+<string name="e1" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-Dmi_Cs">
+<name>Dmi/C#</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="2" finger="3"/>
+<string name="e1" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Ds">
+<name>D#</name>
+<position base="3">
+<barre low="e6" high="e1" fret="3" finger="1"/>
+<string name="a" fret="6" finger="4"/>
+<string name="d" fret="5" finger="3"/>
+<string name="b" fret="4" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Dsdim">
+<name>D#dim</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="a" state="no"/>
+<string name="d" fret="1" finger="1"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="2"/>
+<string name="e1" fret="2" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-E">
+<name>E</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="2" finger="3"/>
+<string name="g" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Emi">
+<name>Emi</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-E7">
+<name>E7</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="2" finger="3"/>
+<string name="g" fret="1" finger="1"/>
+<string name="b" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Emi7">
+<name>Emi7</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="2" finger="3"/>
+<string name="b" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Esus4">
+<name>Esus4</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="2" finger="3"/>
+<string name="g" fret="2" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Ee">
+<name>E+</name>
+<position base="1">
+<string name="a" fret="3" finger="3"/>
+<string name="d" fret="2" finger="4"/>
+<string name="g" fret="1" finger="1"/>
+<string name="b" fret="1" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-F">
+<name>F</name>
+<position base="1">
+<barre low="e6" high="e1" fret="1" finger="1"/>
+<string name="a" fret="3" finger="3"/>
+<string name="d" fret="3" finger="4"/>
+<string name="g" fret="2" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Fmi">
+<name>Fmi</name>
+<position base="1">
+<barre low="e6" high="e1" fret="1" finger="1"/>
+<string name="a" fret="3" finger="3"/>
+<string name="d" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-F7">
+<name>F7</name>
+<position base="1">
+<barre low="e6" high="e1" fret="1" finger="1"/>
+<string name="a" fret="3" finger="3"/>
+<string name="g" fret="2" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Fmaj7">
+<name>Fmaj7</name>
+<position base="1">
+<string name="d" fret="3" finger="3"/>
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Fs">
+<name>F#</name>
+<position base="1">
+<barre low="e6" high="e1" fret="2" finger="1"/>
+<string name="a" fret="4" finger="3"/>
+<string name="d" fret="4" finger="4"/>
+<string name="g" fret="3" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Fsmi">
+<name>F#mi</name>
+<position base="1">
+<barre low="e6" high="e1" fret="2" finger="1"/>
+<string name="a" fret="4" finger="3"/>
+<string name="d" fret="4" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Fs7">
+<name>F#7</name>
+<position base="1">
+<barre low="e6" high="e1" fret="2" finger="1"/>
+<string name="a" fret="4" finger="3"/>
+<string name="g" fret="3" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Fsdim">
+<name>F#dim</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="a" state="no"/>
+<string name="d" fret="1" finger="1"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="2"/>
+<string name="e1" fret="2" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-G">
+<name>G</name>
+<position name="first" base="1">
+<string name="e6" fret="3" finger="2"/>
+<string name="a" fret="2" finger="1"/>
+<string name="b" fret="3" finger="3"/>
+<string name="e1" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-G7">
+<name>G7</name>
+<position base="1">
+<string name="e6" fret="3" finger="3"/>
+<string name="a" fret="2" finger="2"/>
+<string name="e1" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Gdim">
+<name>Gdim</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="a" state="no"/>
+<string name="d" fret="2" finger="1"/>
+<string name="g" fret="3" finger="3"/>
+<string name="b" fret="2" finger="2"/>
+<string name="e1" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-G6_C">
+<name>G6/C</name>
+<position base="1">
+<string name="a" fret="3" finger="2"/>
+<string name="d" fret="2" finger="1"/>
+<string name="b" fret="3" finger="3"/>
+<string name="e1" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-G7_5e">
+<name>G7/5+</name>
+<position base="3">
+<barre low="e6" high="e1" fret="3" finger="1"/>
+<string name="d" fret="5" finger="4"/>
+<string name="g" fret="4" finger="2"/>
+<string name="b" fret="4" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-G_B">
+<name>G/B</name>
+<name xml:lang="cs">G/H</name>
+<position base="1">
+<string name="e6" fret="3" finger="2"/>
+<string name="a" fret="2" finger="1"/>
+<string name="e1" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Gs">
+<name>G#</name>
+<position base="4">
+<barre low="e6" high="e1" fret="4" finger="1"/>
+<string name="a" fret="6" finger="3"/>
+<string name="d" fret="6" finger="4"/>
+<string name="g" fret="5" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Gsmi">
+<name>G#mi</name>
+<position base="4">
+<barre low="e6" high="e1" fret="4" finger="1"/>
+<string name="a" fret="6" finger="3"/>
+<string name="d" fret="6" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Gs7">
+<name>G#7</name>
+<position base="4">
+<barre low="e6" high="e1" fret="4" finger="1"/>
+<string name="a" fret="6" finger="3"/>
+<string name="g" fret="5" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Gsdim">
+<name>G#dim</name>
+<position base="1">
+<string name="e6" state="no"/>
+<string name="a" state="no"/>
+<string name="d" fret="3" finger="1"/>
+<string name="g" fret="4" finger="3"/>
+<string name="b" fret="3" finger="2"/>
+<string name="e1" fret="4" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Gse">
+<name>G#+</name>
+<position base="4">
+<barre low="e6" high="e1" fret="4" finger="1"/>
+<string name="d" fret="6" finger="4"/>
+<string name="g" fret="5" finger="2"/>
+<string name="b" fret="5" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-A">
+<name>A</name>
+<position base="1">
+<string name="d" fret="2" finger="1"/>
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-Ami">
+<name>Ami</name>
+<position base="1">
+<string name="d" fret="2" finger="2"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-A7">
+<name>A7</name>
+<position base="1">
+<string name="d" fret="2" finger="1"/>
+<string name="b" fret="2" finger="3"/>
+<string name="e1" fret="3" state="opt"/>
+</position>
+</chord>
+<chord id="xchords-Asus4">
+<name>Asus4</name>
+<position base="1">
+<string name="d" fret="2" finger="1"/>
+<string name="g" fret="2" finger="2"/>
+<string name="b" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Ami7">
+<name>Ami7</name>
+<position base="1">
+<string name="d" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+<string name="e1" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Ami6">
+<name>Ami6</name>
+<position base="1">
+<string name="d" fret="2" finger="2"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="1"/>
+<string name="e1" fret="2" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Amaj">
+<name>Amaj</name>
+<position base="1">
+<string name="d" fret="2" finger="2"/>
+<string name="g" fret="1" finger="1"/>
+<string name="b" fret="2" finger="3"/>
+</position>
+</chord>
+<chord id="xchords-Ami7_G">
+<name>Ami7/G</name>
+<position base="1">
+<string name="e6" fret="3" finger="3"/>
+<string name="d" fret="2" finger="2"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Ami_Fs">
+<name>Ami/F#</name>
+<position base="1">
+<string name="e6" fret="2" finger="T"/>
+<string name="d" fret="2" finger="2"/>
+<string name="g" fret="2" finger="3"/>
+<string name="b" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-Bb">
+<name>Bb</name>
+<name xml:lang="cs">B</name>
+<position base="1">
+<barre low="e6" high="e1" fret="1" finger="1"/>
+<string name="d" fret="3" finger="2"/>
+<string name="g" fret="3" finger="3"/>
+<string name="b" fret="3" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Bb7">
+<name>Bb7</name>
+<name xml:lang="cs">B7</name>
+<position base="1">
+<barre low="e6" high="e1" fret="1" finger="1"/>
+<string name="d" fret="3" finger="2"/>
+<string name="b" fret="3" finger="4"/>
+<string name="e1" fret="4" state="opt"/>
+</position>
+</chord>
+<chord id="xchords-Bb9">
+<name>Bb9</name>
+<name xml:lang="cs">B9</name>
+<position base="1">
+<barre low="e6" high="a" fret="1" finger="T"/>
+<barre low="g" high="e1" fret="1" finger="1"/>
+</position>
+</chord>
+<chord id="xchords-B">
+<name>B</name>
+<name xml:lang="cs">H</name>
+<position base="2">
+<barre low="e6" high="e1" fret="2" finger="1"/>
+<string name="d" fret="4" finger="2"/>
+<string name="g" fret="4" finger="3"/>
+<string name="b" fret="4" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-B7">
+<name>B7</name>
+<name xml:lang="cs">H7</name>
+<position base="1">
+<string name="a" fret="2" finger="2"/>
+<string name="d" fret="1" finger="1"/>
+<string name="g" fret="2" finger="3"/>
+<string name="e1" fret="2" finger="4"/>
+</position>
+</chord>
+<chord id="xchords-Bmi">
+<name>Bmi</name>
+<name xml:lang="cs">Hmi</name>
+<position base="1">
+<barre low="e6" high="e1" fret="2" finger="1"/>
+<string name="d" fret="4" finger="3"/>
+<string name="g" fret="4" finger="4"/>
+<string name="b" fret="3" finger="2"/>
+</position>
+</chord>
+<chord id="xchords-Bmi7">
+<name>Bmi7</name>
+<name xml:lang="cs">Hmi7</name>
+<position base="1">
+<barre low="e6" high="e1" fret="2" finger="1"/>
+<string name="d" fret="4" finger="3"/>
+<string name="b" fret="3" finger="2"/>
+<string name="e1" fret="5" state="opt"/>
+</position>
+</chord>
+</chordlibrary>

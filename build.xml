@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<project name="xchords" default="info">
+
+    <!-- Properties of the project -->
+    <property name="app.name" value="xchords"/>
+
+    <!-- first load our configuration of directories - HARDCODE of dir-->
+    <property file="cfg/dir.properties"/>
+
+    <!-- Load the specific tools configuration -->
+    <property file="cfg/jar.properties"/>
+    
+    <!-- Set the external environment settings - dirs etc. This could be
+         extended with param from command line - which setting take...
+         ex: "cfg/${configuration}/env.properties"
+         -->
+    <property file="cfg/env.properties"/>
+    
+    <!-- Define other properties, extended from the base properties in cfg files -->
+    <property name="dir.tomcat.lib" value="${dir.tomcat}\\common\\lib"/>
+    <property name="dir.deploy" value="${dir.tomcat}/webapps/${app.name}"/>
+    <property name="dir.deploy.classes" value="${dir.deploy}/WEB-INF/classes"/>
+  
+
+    <!-- Define simplified names of jars including paths -->
+    <property name="servlet.jar" value="${dir.tomcat.lib}/${cpf.jar.servlet}"/>
+    <property name="fileupload.jar" value="${dir.tomcat.lib}/${cpf.jar.fileupload}"/>
+
+    <property name="batik-rasterizer.jar" value="${dir.batik.home}/batik-rasterizer.jar"/>
+    <property name="batik.jar" value="${dir.batik.home}/batik.jar"/>
+    <property name="ant.jar" value="${dir.ant.home}/lib/ant.jar"/>
+    
+    <!-- Define paths for compiling -->
+    <path id="path.demo.compile">
+        <pathelement location="${servlet.jar}"/>
+        <pathelement location="${fileupload.jar}"/>
+    </path>
+
+    <path id="path.gui.compile">
+        <pathelement location="${batik.jar}"/>
+    </path>
+
+    <path id="path.gui.run">
+        <pathelement location="${batik.jar}"/>
+        <pathelement location="${ant.jar}"/>    <!-- This could be later removed. SVGApplication.java now uses some testing code... -->
+    </path>
+    
+    <!-- Info target-->
+    <target name="info" description="Writes info about some basic targets and how to run them.">
+        
+        <echo message="${ant.version}"/>
+        
+        <echo message="Hi, this is build script for XChords project."/>
+        <echo>
+ Call it like this:
+  ant plain -Dparam.archive=basic
+ or	
+  ant svg -Dparam.archive=basic 
+        </echo>
+    </target>
+
+    <!-- Targets for online demo app -->
+    <!-- Prepare deploy structure -->
+    <target name="prepare">
+        <mkdir dir="${dir.deploy}"/>
+        <mkdir dir="${dir.deploy}/WEB-INF"/>
+        <mkdir dir="${dir.deploy}/WEB-INF/classes"/>
+        
+            <mkdir  dir="${dir.deploy}/WEB-INF/lib"/>
+            <copy todir="${dir.deploy}/WEB-INF/lib">
+              <fileset dir="lib"/>
+            </copy>
+        
+        <!--<mkdir dir="${javadoc.home}"/>-->
+    </target>
+
+    <!-- Deploy application to tomcat directories -->
+    <target name="deploy" depends="prepare, compile" description="Deploys online demo app into tomcat." >
+        <!-- web files -->
+        <copy todir="${dir.deploy}">
+            <fileset dir="${dir.web}"/>
+        </copy>
+        <!-- web.xml -->
+        <copy file="${dir.cfg}/web.xml" tofile="${dir.deploy}/WEB-INF/web.xml" overwrite="true"/>
+        <!-- classses -->
+        <copy todir="${dir.deploy.classes}">
+            <fileset dir="${dir.build}"/>
+        </copy>
+    </target>
+
+    <!-- Compile project -->
+    <target name="compile"
+        description="Compiles sources of online demo app."
+        depends="compile.init">
+
+        <mkdir dir="${dir.build}"/>
+
+        <!-- compile -->
+        <javac srcdir="${dir.src}"
+            destdir="${dir.build}"
+            classpathref="path.demo.compile"
+            debug="true" excludes="cz/barad/xchords/preview/**,cz/barad/xchords/services/**,cz/barad/xchords/test/**"
+		includes="cz/barad/xchords/servlet/**"/>
+	
+    </target>
+
+    <target name="compile.init"></target>
+
+    
+    <target name="clean" description="Call this manually">
+        <delete dir="${dir.build}"/>
+    </target>
+
+    <!-- Targets for local usage - named similar as startupscripts -->
+    <target name="makelist" depends="any-init">
+        
+        <!-- call convert ..\data\%1.xml ..\src\preproces.xsl ..\out\%1\%1_list.xml ..\out\%1\ .pre .xml yes 400 600 -->
+        <!-- call java com.icl.saxon.StyleSheet %1 %2 directory=%4 inext=%5 outext=%6 showfingers=%7 width=%8 height=%9 >%3 -->
+        <xslt in="${dir.xchords.in}/${param.archive}.xml" style="${dir.xsl}/preproces.xsl"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_list.xml" force="true">
+              <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              <param name="inext" expression=".pre"/>
+              <param name="outext" expression=".xml"/>
+              <param name="showfingers" expression="yes"/>
+              <param name="width" expression="400"/>
+              <param name="height" expression="600"/>
+        </xslt>  
+    </target>
+    
+    <!-- Add this target into your new target depends section, if it has no other depends... environment setup. -->
+    <target name="any-init">
+        
+        <echo message="$${param.archive} = ${param.archive}"/>
+        <delete dir="${dir.xchords.out}/${param.archive}"/>
+        <mkdir dir="${dir.xchords.out}/${param.archive}"/>
+        
+    </target>
+    
+    <target name="renumber" depends="makelist">
+    <!-- call convert ../out/%1/%1_list.xml ../src/renumber.xsl ../out/%1/%1_renum.html ../out/%1/ .pre .xml yes 400 600
+        del ..\out\%1\*.pre
+        del ..\out\%1\%1_renum.html
+-->
+        <xslt in="${dir.xchords.out}/${param.archive}/${param.archive}_list.xml"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_renum.html"
+              style="${dir.xsl}/renumber.xsl"
+              force="true">
+              <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              <param name="inext" expression=".pre"/>
+              <param name="outext" expression=".xml"/>
+              <param name="showfingers" expression="yes"/>
+              <param name="width" expression="400"/>
+              <param name="height" expression="600"/>
+         </xslt>
+         <!--delete>
+            <fileset dir="${dir.xchords.out}/${param.archive}" includes="*.pre"/>
+         </delete-->
+         <delete file="${dir.xchords.out}/${param.archive}/${param.archive}_renum.html"/>
+         
+    </target>
+    
+    <!-- transformation for one chord  -->
+    <target name="dyn" >
+        <copy file="${dir.data}/${param.archive}.xml" todir="${dir.xchords.out}/${param.archive}" overwrite="true"/>
+    
+         <xslt in="${dir.xchords.out}/${param.archive}/${param.archive}.xml"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_dyn.html"
+              style="${dir.xsl}/xchords2draw.xsl"
+              force="true">
+              <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              <param name="inext" expression=".pre"/>
+              <param name="outext" expression=".xml"/>
+              <param name="showfingers" expression="yes"/>
+              <param name="width" expression="400"/>
+              <param name="height" expression="600"/>
+         </xslt>
+    </target>
+    
+    <!--
+    set XCHORDS_FINGERS=%2
+if "%2"=="" set XCHORDS_FINGERS=no
+
+set XCHORDS_WIDTH=%3
+if "%3"=="" set XCHORDS_WIDTH=0
+
+set XCHORDS_HEIGHT=%4
+if "%4"=="" set XCHORDS_HEIGHT=0
+
+call convert ../out/%1/%1_list.xml ../src/svg2.xsl ../out/%1/%1_svg.html ../out/%1/ .xml .svg %XCHORDS_FINGERS% %XCHORDS_WIDTH% %XCHORDS_HEIGHT%
+
+move ..\out\%1\%1_list.xml ..\out\%1\%1_list.list
+
+if "%5"=="delete" del ..\out\%1\*.xml
+
+move ..\out\%1\%1_list.list ..\out\%1\%1_list.xml
+
+REM here was rem. why?
+del ..\out\%1\%1_svg.html
+
+-->
+    <target name="svg" description="creates SVG files from specified archive" depends="renumber">
+    	<copy file="${dir.xsl}/xchords-default-css.xml" todir="${dir.xchords.out}/${param.archive}" overwrite="true"/>
+    
+        <xslt in="${dir.xchords.out}/${param.archive}/${param.archive}_list.xml"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_svg.html"
+              style="${dir.xsl}/svg3.xsl"
+              force="true">
+              <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              <param name="inext" expression=".xml"/>
+              <param name="outext" expression=".svg"/>
+              <param name="showfingers" expression="yes"/>
+              <param name="width" expression="220"/>
+              <param name="height" expression="230"/>
+              <param name="vx" expression="0"/>
+              <param name="vy" expression="0"/>
+              <param name="externalstyle" expression="false"/>
+              <param name="inlinestyle" expression="true"/>
+         </xslt>
+        
+          <!--delete>
+            <fileset dir="${dir.xchords.out}/${param.archive}" includes="*.xml" excludes="${param.archive}_list.xml"/>
+         </delete-->
+         <delete file="${dir.xchords.out}/${param.archive}/${param.archive}_svg.html"/>
+         <copy file="${dir.web}/xchords-default.css" todir="${dir.xchords.out}/${param.archive}" overwrite="true"/>
+    </target>
+    
+    <!--
+    This is one click target equal to svg2pdf.bat. (startupscripts.txt)
+    
+    call setter.bat
+
+call java org.apache.xalan.xslt.Process -IN ../out/%1/%1_list.xml -XSL ../src/pdf.xsl -OUT ../out/%1/%1_pdffo.xml -PARAM directory ../../out/%1/ 
+
+cd c:\java_tools\fop\0.20.4
+c:
+
+call fop d:/projects/xchords.0.3/out/%1/%1_pdffo.xml d:/projects/xchords.0.3/out/%1/%1.pdf
+
+cd d:\projects\xchords.0.3\bin
+d:
+
+del ..\out\%1\%1_pdffo.xml
+
+
+
+    -->
+    <target name="svg2pdf" description="creates PDF from SVG files from specified archive" depends="renumber">
+        <copy file="${dir.xsl}/xchords-default-css.xml" todir="${dir.xchords.out}/${param.archive}" overwrite="true"/>
+         
+    	<xslt in="${dir.xchords.out}/${param.archive}/${param.archive}_list.xml"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_svg.html"
+              style="${dir.xsl}/svg3.xsl"
+              force="true">
+              <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              <param name="inext" expression=".xml"/>
+              <param name="outext" expression=".svg"/>
+              <param name="showfingers" expression="yes"/>
+              <param name="width" expression="220"/>
+              <param name="height" expression="300"/>
+        </xslt>
+        
+        <delete>
+            <fileset dir="${dir.xchords.out}/${param.archive}" includes="*.xml" excludes="${param.archive}_list.xml"/>
+        </delete>
+        <delete file="${dir.xchords.out}/${param.archive}/${param.archive}_svg.html"/>
+        <copy file="${dir.web}/xchords-default.css" todir="${dir.xchords.out}/${param.archive}" overwrite="true"/>
+         
+        <xslt in="${dir.xchords.out}/${param.archive}/${param.archive}_list.xml"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_pdffo.xml"
+              style="${dir.xsl}/pdf.xsl"
+              force="true">
+            <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              
+        </xslt>
+         
+        <!-- transform XSL-FO into PDF -->
+        <exec dir="${dir.fop.home}" executable="fop.bat" vmlauncher="false">
+            <arg line="${dir.xchords.out}/${param.archive}/${param.archive}_pdffo.xml ${dir.xchords.out}/${param.archive}/${param.archive}.pdf"/>
+        </exec>
+        
+        
+        <!-- delete temp XSL-FO file -->
+        <delete file="${dir.xchords.out}/${param.archive}/${param.archive}_pdffo.xml"/>
+    </target>
+    
+    <!--
+    pushd
+
+call setter.bat
+
+set FOP_HOME=c:\java_tools\fop\0.20.4
+
+
+set BATIK_HOME=c:\java_tools\batik\1.1.1
+set IMAGE_FORMAT=%2
+if "%2" NEQ "jpeg" OR "%2" NEQ "png" OR "%2" NEQ "tiff" set IMAGE_FORMAT=png
+
+call java -jar %BATIK_HOME%\batik-rasterizer.jar -d ..\out\%1 -m image/%IMAGE_FORMAT% -a 0,0,400,400 -h 140 -w 140 ..\out\%1\*.svg
+
+if "%3"=="delete" del ..\out\%1\*.svg
+
+popd
+
+java -jar batik-rasterizer.jar -d myDir -m image/jpeg samples/*.svg will generate JPEG images for all the SVG files found in the samples directory
+    -->
+    <target name="svg2raster" depends="svg">
+        <java jar="${batik-rasterizer.jar}"
+          
+           failonerror="true"
+           fork="true"
+           >
+        <!--<arg line="-d ${dir.xchords.out}/${param.archive} -m image/png -a 100,-20,160,420 -h 260 -w 300 ${dir.xchords.out}/${param.archive}/*.svg"/>-->
+        <arg line="-d ${dir.xchords.out}/${param.archive} -m image/png -bg 255.255.255.255 -a 110,70,160,250 -h 138 -w 132 ${dir.xchords.out}/${param.archive}/*.svg"/>
+        <!--<classpath>
+         
+            <pathelement location="dist/test.jar"/>
+            <pathelement path="${java.class.path}"/>
+        </classpath>-->
+        </java>
+    </target>
+    
+    <!--
+    call setter.bat
+
+set IMAGE_FORMAT=%2
+if "%2" NEQ "jpeg" OR "%2" NEQ "png" OR "%2" NEQ "tiff" set IMAGE_FORMAT=png
+
+call java org.apache.xalan.xslt.Process -IN ../out/%1/%1_list.xml -XSL ../src/htmlpic.xsl -OUT ../out/%1/%1.html -PARAM directory ../out/%1/ -PARAM imageformat %IMAGE_FORMAT% -PARAM items_on_row 3
+
+    -->
+    <target name="htmlpic" depends="svg2raster" description="Generates HTML page with JPEG images of chords.">
+        <xslt in="${dir.xchords.out}/${param.archive}/${param.archive}_list.xml"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}.html"
+              style="${dir.xsl}/htmlpic.xsl"
+              force="true">
+            <param name="directory" expression="${dir.xchords.out}/${param.archive}/"/>
+              <param name="imageformat" expression="jpeg"/>
+              <param name="items_on_row" expression="3"/>
+              
+         </xslt>
+    </target>
+    
+    <!--
+    call setter
+
+mkdir ..\out
+mkdir ..\out\%1
+
+call convert ../data/%1.xml ../src/plain.xsl ../out/%1/%1_plain.html yes 400 600 no 400 600
+    -->
+    <target name="plain" description="Generates ascii description (C: 032010) of chords." depends="any-init">
+        <xslt in="${dir.xchords.in}/${param.archive}.xml" style="${dir.xsl}/plain.xsl"
+              out="${dir.xchords.out}/${param.archive}/${param.archive}_plain.html" force="true">
+              
+        </xslt>  
+    </target>
+    
+    
+    <target name="deleteall" description="Deletes all output produced by xchords (dir.xchords.out)">
+        <delete dir="${dir.xchords.out}"/>
+        <mkdir dir="${dir.xchords.out}"/>
+    </target>
+    
+    <target name="gui" description="Compiles and runs gui">
+         <!-- compile -->
+        <javac srcdir="${dir.src}"
+            destdir="${dir.build}"
+            classpathref="path.gui.compile"
+            debug="true" excludes="cz/barad/xchords/servlet/**,cz/barad/xchords/services/**,cz/barad/xchords/test/**"
+		includes="cz/barad/xchords/preview/**"/>
+	
+        <java classname="cz.barad.xchords.preview.SVGApplication" fork="true">
+        <classpath>
+            <pathelement location="${dir.build}"/>
+            <path refid="path.gui.run"/>
+        </classpath>
+        </java>
+    </target>
+</project>

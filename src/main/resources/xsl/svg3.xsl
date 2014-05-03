@@ -28,6 +28,9 @@
 <xsl:include href="header.xsl"/>
 <xsl:include href="readlist.xsl"/>
 
+<!-- load styles for elements -->
+<xsl:variable name="cssxmldoc" select="$cssfile"/>
+
 <xsl:include href="draw2svg.xsl"/>
 
 </xsl:stylesheet>

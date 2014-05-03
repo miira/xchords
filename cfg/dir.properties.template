@@ -1,0 +1,20 @@
+# project structure directories:
+
+dir.cfg=cfg
+dir.web=src/main/resources/web
+dir.src=src/main/java
+dir.build=build
+dir.lib=lib
+dir.bin=scripts
+dir.docs=docs
+dir.dist=dist
+dir.test=test
+dir.reports=reports
+dir.javadoc=docs/javadoc
+dir.docs.docbook=docs/xdocs
+dir.docs.pdf=docs/pdf
+dir.xsl=src/main/resources/xsl
+dir.classes=build/classes
+dir.out=out
+dir.data=data
+

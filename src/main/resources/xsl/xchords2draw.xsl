@@ -44,23 +44,23 @@ Creates <separator> and <endneck> elements.
 	<xsl:when test="position() = last()">
 		<xsl:for-each select="child::*">
 			<xsl:sort select="@fret" order="descending" data-type="number"/>
-		<xsl:call-template name="proc_string">
-			<xsl:with-param name="order" select="position()"/>
-			<xsl:with-param name="fret" select="@fret"/>
-			<xsl:with-param name="last">yes</xsl:with-param>
-                        <xsl:with-param name="base"><xsl:value-of select="$basevar"/></xsl:with-param>
-		</xsl:call-template>
+			<xsl:call-template name="proc_string">
+				<xsl:with-param name="order" select="position()"/>
+				<xsl:with-param name="fret" select="@fret"/>
+				<xsl:with-param name="last">yes</xsl:with-param>
+                <xsl:with-param name="base"><xsl:value-of select="$basevar"/></xsl:with-param>
+			</xsl:call-template>
 		</xsl:for-each>
 	</xsl:when>
 	<xsl:otherwise>
 		<xsl:for-each select="child::*">
 			<xsl:sort select="@fret" order="descending" data-type="number"/>
-		<xsl:call-template name="proc_string">
-			<xsl:with-param name="order" select="position()"/>
-			<xsl:with-param name="fret" select="@fret"/>
-			<xsl:with-param name="last">no</xsl:with-param>
-                        <xsl:with-param name="base"><xsl:value-of select="$basevar"/></xsl:with-param>
-		</xsl:call-template>
+			<xsl:call-template name="proc_string">
+				<xsl:with-param name="order" select="position()"/>
+				<xsl:with-param name="fret" select="@fret"/>
+				<xsl:with-param name="last">no</xsl:with-param>
+                <xsl:with-param name="base"><xsl:value-of select="$basevar"/></xsl:with-param>
+			</xsl:call-template>
 		</xsl:for-each>
 	</xsl:otherwise>
 	</xsl:choose>
@@ -76,9 +76,19 @@ Creates <separator> and <endneck> elements.
 
 	<!-- maximum fret number = create separator -->
 	<xsl:if test="$order = 1">
-		<xsl:attribute name="maxfret"><xsl:value-of select="$fret"/></xsl:attribute>
+		<xsl:variable name="mmaxfret">
+			<xsl:choose>
+			<xsl:when test="$fret &gt; 0">
+				<xsl:value-of select="$fret"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$base"/>
+			</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:attribute name="maxfret"><xsl:value-of select="$mmaxfret"/></xsl:attribute>
 		<xsl:call-template name="proc_separator">
-			<xsl:with-param name="fret"><xsl:value-of select="$fret + 1"/></xsl:with-param>
+			<xsl:with-param name="fret"><xsl:value-of select="$mmaxfret + 1"/></xsl:with-param>
 			<xsl:with-param name="last" select="$last"/>
 		</xsl:call-template>
 	</xsl:if>
@@ -100,11 +110,12 @@ Creates <separator> and <endneck> elements.
             </xsl:element>
         </xsl:when>
         <xsl:when test="@state = 'opt'">
+        	
             <xsl:copy-of select="."/>
         </xsl:when>
         <xsl:when test="@fret and @state!='no' and @state!='opt' and @state!='open'">
-		<xsl:copy-of select="."/>
-	</xsl:when>
+			<xsl:copy-of select="."/>
+		</xsl:when>
         <xsl:otherwise>
             <xsl:copy-of select=".">
             <xsl:attribute name="state">ok</xsl:attribute>
@@ -132,13 +143,13 @@ Creates <separator> and <endneck> elements.
 </xsl:template>
 
 <!-- copy all the source document -->
-<!--<xsl:template match="*">
+<!-- <xsl:template match="*">
 	<xsl:copy>
 		<xsl:copy-of select="@*"/>
 		<xsl:apply-templates/>
 	</xsl:copy>
 
 </xsl:template>
--->
+ -->
 
 </xsl:stylesheet>

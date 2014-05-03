@@ -98,7 +98,10 @@ public class XMLChordSaver extends XMLSaver {
 			if (si.getFret() == 0) {
 				child.setAttribute("state", StringState.OPEN.getValue());
 			} else {
-				// state == ok, we don't need to set&save state
+				if (si.getState() == StringState.OPTIONAL) {
+					child.setAttribute("state", StringState.OPTIONAL.getValue());
+				}
+				// if state == ok, we don't need to set&save state (it's the default value)
 				child.setAttribute("fret", Integer.toString(si.getFret(), 10));
 				if (si.getFinger() != null && !"".equals(si.getFinger().trim())) {
 					child.setAttribute("finger", si.getFinger());
