@@ -1,3 +1,5 @@
+# XChords 
+
 Standalone tool and Java library for guitar chords representation, manipulation and presentation.
 
 XChords converts XML guitar chord definitions to SVG (Scalable Vector Graphics) images and then further to JPEG/PNG/TIFF/PDF/HTML documents. Project includes XML Schema and/or DTD. It uses XSLT as the main engine (XML->XSLT->SVG).
