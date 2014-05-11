@@ -52,7 +52,7 @@ public class ChordManager {
 		// load default chords
 		String result = loadLibrary("/default-chords/robotar-default.xml");
 		if (result != null) {
-			setChosenLibrary(result);
+			//this.setChosenLibrary(result);
 			initialized = true;
 		} else {
 			errors = true;
@@ -131,13 +131,17 @@ public class ChordManager {
 	public boolean isErrors() {
 		return errors;
 	}
-	
+	//TODO 
 	/** generate list of used chord libraries without robotar-default-chords. */
 	public List<String> getLibrariesList(Collection<ChordLibrary> libs) {
 		List<String> list = new ArrayList<String>();
 		for (ChordLibrary chl : libs) {
+			// ignore robotar collection
 			if (!DEFAULT_ROBOTAR.equals(chl.getName())) {
-				list.add(chl.getPath());
+				// skip those, that were not yet saved - we don't have path set
+				if (chl.getPath() != null) {
+					list.add(chl.getPath());
+				}
 			}
 		}
 		return list;

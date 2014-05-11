@@ -6,10 +6,11 @@ package cz.versarius.xchords;
  * @author miira
  *
  */
-public class ChordLibrary extends ChordBag {
+public class ChordLibrary extends ChordBag implements Comparable {
 	private String desc;
 	private String name;
 	private String path;
+	private boolean changed;
 	
 	public ChordLibrary() {
 	}
@@ -31,6 +32,9 @@ public class ChordLibrary extends ChordBag {
 	public String getName() {
 		return name;
 	}
+	public String getNameWithMark() {
+		return (changed ? name + " *": name);
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -39,5 +43,26 @@ public class ChordLibrary extends ChordBag {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public boolean isChanged() {
+		return changed;
+	}
+
+	public void setChanged(boolean changed) {
+		this.changed = changed;
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		if (obj == null) return 0;
+		if (!(obj instanceof ChordLibrary)) {
+			return 0;
+		}
+		ChordLibrary other = (ChordLibrary)obj;
+		if (other.name == null) {
+			return -1;
+		}
+		return name.compareTo(other.name);
 	}
 }

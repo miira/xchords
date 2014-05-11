@@ -46,6 +46,7 @@ public class XML2SVG {
 			// root elements
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("chord");
+			rootElement.setAttribute("id", chord.getId());
 			doc.appendChild(rootElement);
 
 			saver.processChord(doc, chord, rootElement);
@@ -62,8 +63,8 @@ public class XML2SVG {
 			System.out.println("meine chords1: " + doc.toString());
 			
 	        String outputDir = "../out/" + "g" + "/";
-	        String[] paramValues = {outputDir, ".xml", ".svg", "yes", "220", "230"};
-	        String[] paramNames = {"directory", "inext", "outext", "showfingers", "width", "height"};
+	        String[] paramValues = {outputDir, ".xml", ".svg", "yes", "130"}; // width matches with svgpanel on chords page
+	        String[] paramNames = {"directory", "inext", "outext", "showfingers", "width" }; //, "height"
 	        
 	        Transformer transformer = null;
 	        Transformer transformer2 = null;

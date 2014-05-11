@@ -15,7 +15,7 @@ fill:none; stroke:black; stroke-width:14px;
 fill:black; stroke: black; stroke-width: 1px;
 </elem>
 <elem id="strings">
-stroke: gray;
+stroke: lightgrey; stroke-width: 1px;
 </elem>
 <elem id="dot">
 fill:black; stroke: black;
